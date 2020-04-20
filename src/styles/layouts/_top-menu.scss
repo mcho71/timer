@@ -1,0 +1,47 @@
+mat-toolbar.mat-toolbar {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
+
+  mat-toolbar-row {
+    justify-content: space-between;
+    padding: 0 16px 0;
+  }
+
+  mat-icon {
+    color: $white;
+  }
+}
+
+// EXTERNAL LINK ICONS
+.app-toolbar {
+  .toolbar-external-icons-container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+
+    a {
+      display: flex;
+      align-items: center;
+      padding: 24px;
+      margin: 0 -16px;
+
+      &:focus {
+        // `outline-offset` is not applied on Chrome on Windows, if `outline-style` is `auto.
+        outline: 1px solid $focus-outline-ondark;
+        outline-offset: -16px;
+      }
+
+      @media screen and (max-width: 480px) {
+        margin: 0 0 0 8px;
+        padding: 0;
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+
+      img {
+        height: 24px;
+      }
+    }
+  }
+}

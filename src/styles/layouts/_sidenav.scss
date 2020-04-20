@@ -1,0 +1,31 @@
+.sidenav-container {
+  height: calc(100% - 64px);
+}
+
+// HAMBURGER BUTTON
+.hamburger.mat-button {
+  height: 64px;
+  border-radius: 100px;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  @media (max-width: 480px) {
+    min-width: 15%;
+  }
+
+  &:not(.starting) {
+    transition-duration: 0.4s;
+    transition-property: color, margin;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  &:hover {
+    color: $lightgray;
+  }
+
+  & .mat-icon {
+    position: inherit;
+  }
+}

@@ -1,0 +1,11 @@
+// import global themes
+@import '~@angular/material/theming';
+@import './theme';
+
+@import './mixins';
+
+// import global variables
+@import './constants';
+
+@import './base';
+@import './layouts/layouts-dir';
