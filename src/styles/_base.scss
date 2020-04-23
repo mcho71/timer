@@ -11,6 +11,26 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $white;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $offwhite;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $lightgray;
+}
+
 h1, h2, h3, h4, h5, h6 {
   color: $deepgray;
 }
