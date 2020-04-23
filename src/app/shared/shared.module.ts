@@ -6,6 +6,7 @@ import { TimerComponent } from './timer/timer.component';
   declarations: [TimerComponent],
   imports: [
     CommonModule
-  ]
+  ],
+  exports: [TimerComponent]
 })
 export class SharedModule { }

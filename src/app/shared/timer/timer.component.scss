@@ -1,0 +1,22 @@
+.timer {
+  display: flex;
+  max-height: 126px;
+  white-space: nowrap;
+  line-height: normal;
+  font-size: 112px;
+  font-size: 11.2vw;
+  align-items: baseline;
+  .split-sec {
+    font-size: 70px;
+    font-size: 7vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .timer {
+    font-size: 16vw;
+    .split-sec {
+      font-size: 10vw;
+    }
+  }
+}
