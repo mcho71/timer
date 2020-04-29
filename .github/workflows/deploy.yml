@@ -1,0 +1,38 @@
+name: Deploy
+
+on:
+  push:
+    paths-ignore: 'dist/**'
+    branches: master
+
+jobs:
+  build-deploy:
+    name: 'Build and Deploy'
+    runs-on: ubuntu-latest
+    steps:
+    - name: 'Checkout'
+      uses: actions/checkout@v2
+
+    - name: 'Restore node_modules cache'
+      id: app-cache-npm
+      uses: actions/cache@v1
+      with:
+        path: node_modules
+        key: npm-app-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          npm-app-${{ env.app-cache-name }}-
+          npm-
+
+    - name: 'Install app npm dependencies'
+      if: steps.app-cache-npm.outputs.cache-hit != 'true'
+      run: npm ci
+
+    - name: Build
+      run: npm run build
+
+    - name: Update Github Page
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        PUBLISH_DIR: './dist/timer'
+
