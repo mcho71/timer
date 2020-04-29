@@ -10,6 +10,13 @@
     font-size: 70px;
     font-size: 7vw;
   }
+
+  &.sidebar {
+    font-size: 64px;
+    .split-sec {
+      font-size: 40px;
+    }
+  }
 }
 
 @media (max-width: 480px) {

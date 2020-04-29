@@ -31,5 +31,6 @@ export class AppComponent implements OnInit {
     if (this.isSideBySide) {
       this.sideNav.toggle(true);
     }
+    this.mode = this.isSideBySide ? 'side' : 'over';
   }
 }

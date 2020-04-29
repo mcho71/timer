@@ -18,6 +18,7 @@ class TimerOption {
 export class TimerComponent implements OnInit {
   @Input() option: TimerOption = new TimerOption(10 * secUnit);
   private _msec = this.option.msec;
+  @Input() mode: 'main' | 'sidebar' = 'main';
   private intervalId = null;
   get isPlaying() {
     return !!this.intervalId;

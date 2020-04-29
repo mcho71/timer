@@ -1,15 +1,8 @@
-<div class="timer">
+<div class="timer" [ngClass]="{sidebar: mode == 'sidebar'}">
   <div class="hour">{{ hour | number:'2.0' }}</div>
   <div class="colon">:</div>
   <div class="min">{{ min | number:'2.0' }}</div>
   <div class="colon">:</div>
   <div class="sec">{{ sec | number:'2.0' }}</div>
-  <div class="split-sec">{{ splitSec | number:'2.0' }}</div>
-</div>
-
-<!-- temporary controller -->
-<div class="controller">
-  <p (click)="pause()">pause</p>
-  <p (click)="start()">start</p>
-  <p (click)="reset()">reset</p>
+  <div class="split-sec">{{ splitSec | number:'1.0' }}</div>
 </div>

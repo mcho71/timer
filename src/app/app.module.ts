@@ -1,12 +1,14 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { CustomIconRegistry, SVG_ICONS } from './shared/custom-icon-registry';
@@ -107,10 +109,12 @@ export const svgIconProviders = [
     BrowserAnimationsModule,
     SharedModule,
     MatButtonModule,
+    MatCardModule,
     MatIconModule,
     MatSidenavModule,
     MatToolbarModule,
-    HttpClientModule
+    HttpClientModule,
+    DragDropModule
   ],
   providers: [
     { provide: MatIconRegistry, useClass: CustomIconRegistry },
