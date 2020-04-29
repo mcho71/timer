@@ -1,5 +1,7 @@
 import { Component, ViewChild, HostListener, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { TimerOption, Time } from './classes';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +16,15 @@ export class AppComponent implements OnInit {
   sideNav: MatSidenav;
   private sideBySideWidth = 992;
   isTransitioning = false;
+  timerOptions: TimerOption[] = [
+    new TimerOption(new Time(1, 0, 5)),
+    new TimerOption(new Time(0, 0, 8)),
+    new TimerOption(new Time(0, 1, 7)),
+  ];
+  currentTimerOptionIndex = 0;
+  get currentTimerOption() {
+    return this.timerOptions[this.currentTimerOptionIndex];
+  }
 
   ngOnInit() {
     // Do not initialize the search on browsers that lack web worker support
@@ -32,5 +43,9 @@ export class AppComponent implements OnInit {
       this.sideNav.toggle(true);
     }
     this.mode = this.isSideBySide ? 'side' : 'over';
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.timerOptions, event.previousIndex, event.currentIndex);
   }
 }

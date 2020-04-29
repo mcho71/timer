@@ -14,15 +14,25 @@
 <mat-sidenav-container class="sidenav-container" role="main">
 
   <main class="sidenav-content" role="main">
-    <app-timer></app-timer>
+    <app-timer #mainTimer [time]="currentTimerOption.time"></app-timer>
+    <!-- temporary controller -->
+    <div class="controller">
+      <p (click)="mainTimer.pause()">pause</p>
+      <p (click)="mainTimer.start()">start</p>
+      <p (click)="mainTimer.reset()">reset</p>
+    </div>
   </main>
 
   <button mat-button class="hamburger" (click)="sidenav.toggle()" title="Toggle Queue">
     <mat-icon svgIcon="menu"></mat-icon>
   </button>
 
-  <mat-sidenav [ngClass]="{'collapsed': !isSideBySide}" #sidenav class="sidenav" [mode]="mode" [opened]="isOpened" position="end">
-    sidenav
+  <mat-sidenav #sidenav class="sidenav"  [ngClass]="{'collapsed': !isSideBySide}" [mode]="mode" [opened]="isOpened" position="end">
+    <div class="drop-list" cdkDropList (cdkDropListDropped)="drop($event)">
+      <mat-card class="drop-box" cdkDrag [cdkDragData]="timerOption" *ngFor="let timerOption of timerOptions">
+        <app-timer [time]="timerOption.time" mode="sidebar"></app-timer>
+      </mat-card>
+    </div>
   </mat-sidenav>
 
 </mat-sidenav-container>

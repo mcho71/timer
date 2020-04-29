@@ -1,24 +1,23 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Time } from 'src/app/classes';
+import { secUnit, dayUnit, hourUnit, minUnit } from 'src/app/constants';
 
-const secUnit = 1000;
-const minUnit = 60 * secUnit;
-const hourUnit = 60 * minUnit;
-const dayUnit = 24 * hourUnit;
 const fps = 30;
 const interval = Math.round(secUnit / fps);
-class TimerOption {
-  constructor(public msec: number) { };
-};
 
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.scss']
 })
-export class TimerComponent implements OnInit {
-  @Input() option: TimerOption = new TimerOption(10 * secUnit);
-  private _msec = this.option.msec;
+export class TimerComponent {
   @Input() mode: 'main' | 'sidebar' = 'main';
+  private _time: Time;
+  @Input() set time(time: Time) {
+    this._time = time;
+    this.setMSec();
+  }
+  private _msec = 0;
   private intervalId = null;
   get isPlaying() {
     return !!this.intervalId;
@@ -36,11 +35,7 @@ export class TimerComponent implements OnInit {
     return Math.floor(this._msec / secUnit) % 60;
   }
   get splitSec() {
-    return Math.floor((this._msec % secUnit) / 10);
-  }
-
-  ngOnInit(): void {
-    this.start();
+    return Math.floor((this._msec % secUnit) / 100);
   }
 
   start() {
@@ -61,7 +56,11 @@ export class TimerComponent implements OnInit {
     this.intervalId = null;
   }
 
+  private setMSec() {
+    this._msec = this._time?.toMillisecond() || 0;
+  }
+
   reset() {
-    this._msec = this.option.msec;
+    this.setMSec();
   }
 }
