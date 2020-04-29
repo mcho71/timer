@@ -1,6 +1,7 @@
 // HAMBURGER BUTTON
-.hamburger.mat-button {
+.hamburger.mat-icon-button {
   height: 64px;
+  width: 64px;
   border-radius: 100px;
   padding: 0;
   position: absolute;
@@ -23,5 +24,17 @@
 
   & .mat-icon {
     position: inherit;
+    font-size: 32px;
+  }
+}
+
+.sidenav {
+  .mat-card.drop-box {
+    mat-icon.now-playing {
+      color: $blue-500;
+      position: absolute;
+      top: 3px;
+      left: 3px;
+    }
   }
 }

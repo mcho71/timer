@@ -14,22 +14,43 @@
 <mat-sidenav-container class="sidenav-container" role="main">
 
   <main class="sidenav-content" role="main">
-    <app-timer #mainTimer [time]="currentTimerOption.time"></app-timer>
+    <app-timer #mainTimer [time]="currentTimerOption.time" (finish)="onFinish()"></app-timer>
     <!-- temporary controller -->
     <div class="controller">
-      <p (click)="mainTimer.pause()">pause</p>
-      <p (click)="mainTimer.start()">start</p>
-      <p (click)="mainTimer.reset()">reset</p>
+      <button mat-mini-fab aria-label="skip previous" color="default"
+        (click)="currentTimerOptionIndex =  currentTimerOptionIndex == 0 ? timerOptions.length - 1 : currentTimerOptionIndex - 1"
+        [disabled]="!loop && currentTimerOptionIndex == 0">
+        <mat-icon>skip_previous</mat-icon>
+      </button>
+      <ng-container [ngSwitch]="mainTimer.isPlaying">
+        <button *ngSwitchCase="true" mat-fab aria-label="pause" (click)="mainTimer.pause()">
+          <mat-icon>pause</mat-icon>
+        </button>
+        <button *ngSwitchDefault mat-fab aria-label="start" color="primary" (click)="mainTimer.start()" [disabled]="!mainTimer.isPlayable">
+          <mat-icon>play_arrow</mat-icon>
+        </button>
+      </ng-container>
+      <button mat-fab aria-label="reset" color="default" (click)="mainTimer.reset()">
+        <mat-icon>restore</mat-icon>
+      </button>
+      <button mat-mini-fab aria-label="skip next" color="default"
+        (click)="currentTimerOptionIndex = currentTimerOptionIndex == timerOptions.length - 1 ? 0 : currentTimerOptionIndex + 1"
+        [disabled]="!loop && currentTimerOptionIndex == timerOptions.length - 1">
+        <mat-icon>skip_next</mat-icon>
+      </button>
     </div>
   </main>
 
-  <button mat-button class="hamburger" (click)="sidenav.toggle()" title="Toggle Queue">
-    <mat-icon svgIcon="menu"></mat-icon>
+  <button mat-icon-button class="hamburger" (click)="sidenav.toggle()" title="Toggle Queue">
+
+    <mat-icon>playlist_play</mat-icon>
   </button>
 
-  <mat-sidenav #sidenav class="sidenav"  [ngClass]="{'collapsed': !isSideBySide}" [mode]="mode" [opened]="isOpened" position="end">
+  <mat-sidenav #sidenav class="sidenav" [ngClass]="{'collapsed': !isSideBySide}" [mode]="mode" [opened]="isOpened"
+    position="end">
     <div class="drop-list" cdkDropList (cdkDropListDropped)="drop($event)">
-      <mat-card class="drop-box" cdkDrag [cdkDragData]="timerOption" *ngFor="let timerOption of timerOptions">
+      <mat-card class="drop-box" cdkDrag [cdkDragData]="timerOption" *ngFor="let timerOption of timerOptions; let i = index">
+        <mat-icon *ngIf="currentTimerOptionIndex == i" class="now-playing">play_circle_filled</mat-icon>
         <app-timer [time]="timerOption.time" mode="sidebar"></app-timer>
       </mat-card>
     </div>

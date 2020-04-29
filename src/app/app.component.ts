@@ -2,6 +2,7 @@ import { Component, ViewChild, HostListener, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { TimerOption, Time } from './classes';
+import { TimerComponent } from './shared/timer/timer.component';
 
 @Component({
   selector: 'app-root',
@@ -16,10 +17,12 @@ export class AppComponent implements OnInit {
   sideNav: MatSidenav;
   private sideBySideWidth = 992;
   isTransitioning = false;
+
+  loop = true;
   timerOptions: TimerOption[] = [
-    new TimerOption(new Time(1, 0, 5)),
+    new TimerOption(new Time(0, 0, 5)),
     new TimerOption(new Time(0, 0, 8)),
-    new TimerOption(new Time(0, 1, 7)),
+    new TimerOption(new Time(0, 0, 7)),
   ];
   currentTimerOptionIndex = 0;
   get currentTimerOption() {
@@ -46,6 +49,17 @@ export class AppComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
+    if (this.currentTimerOptionIndex == event.previousIndex) {
+      this.currentTimerOptionIndex = event.currentIndex;
+    }
     moveItemInArray(this.timerOptions, event.previousIndex, event.currentIndex);
+  }
+
+  onFinish() {
+    if (this.currentTimerOptionIndex < this.timerOptions.length - 1) {
+      this.currentTimerOptionIndex += 1;
+    } else if (this.loop) {
+      this.currentTimerOptionIndex = 0;
+    }
   }
 }
