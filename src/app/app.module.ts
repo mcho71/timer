@@ -3,7 +3,9 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,6 +15,7 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { CustomIconRegistry, SVG_ICONS } from './shared/custom-icon-registry';
 import { SharedModule } from './shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 
 export const svgIconProviders = [
@@ -96,11 +99,14 @@ export const svgIconProviders = [
     BrowserModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     BrowserAnimationsModule,
+    FormsModule,
     SharedModule,
     MatButtonModule,
     MatCardModule,
     MatIconModule,
+    MatInputModule,
     MatSidenavModule,
+    MatSnackBarModule,
     MatToolbarModule,
     HttpClientModule,
     DragDropModule

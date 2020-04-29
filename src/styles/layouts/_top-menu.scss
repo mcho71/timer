@@ -1,4 +1,6 @@
 mat-toolbar.mat-toolbar {
+  position: relative;
+  z-index: 10;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
 
   mat-toolbar-row {

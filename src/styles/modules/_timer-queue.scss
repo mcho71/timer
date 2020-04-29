@@ -1,0 +1,28 @@
+.mat-card.timer-queue {
+  width: 300px;
+  display: flex !important;
+  padding: 5px 5px 10px !important;
+  mat-icon {
+    &.now-playing {
+      color: $blue-500;
+    }
+    &.drag-handle {
+      color: $lightgray;
+    }
+  }
+  mat-card-actions {
+    margin: 0 !important;
+    padding: 0;
+  }
+  mat-card-content {
+    width: 58%;
+    margin: 0 0 0 8px;
+    mat-form-field {
+      font-size: 16px;
+      width: 100%;
+    }
+    .timer {
+      cursor: context-menu;
+    }
+  }
+}

@@ -65,6 +65,7 @@ export class CustomIconRegistry extends MatIconRegistry {
       // SECURITY: the source for the SVG icons is provided in code by trusted developers
       div.innerHTML = icon.svgSource;
 
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       nsIconMap[icon.name] = div.querySelector('svg')!;
     });
   }

@@ -11,6 +11,7 @@ const interval = Math.round(secUnit / fps);
   styleUrls: ['./timer.component.scss']
 })
 export class TimerComponent {
+  @Output() finish = new EventEmitter();
   @Input() mode: 'main' | 'sidebar' = 'main';
   private _time: Time;
   @Input() set time(time: Time) {
@@ -19,7 +20,6 @@ export class TimerComponent {
   }
   private _msec = 0;
   private intervalId = null;
-  @Output('finish') finishEmitter = new EventEmitter();
   get isPlaying() {
     return !!this.intervalId;
   }
@@ -49,7 +49,7 @@ export class TimerComponent {
     this.intervalId = setInterval(() => {
       this._msec -= interval;
       if (this._msec <= 0) {
-        this.finish();
+        this.onFinish();
       }
     }, interval);
   }
@@ -67,9 +67,8 @@ export class TimerComponent {
     this.setMSec();
   }
 
-  private finish() {
+  private onFinish() {
     this._msec = 0;
-    this.pause();
-    this.finishEmitter.emit();
+    this.finish.emit();
   }
 }

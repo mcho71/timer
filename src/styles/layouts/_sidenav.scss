@@ -29,12 +29,27 @@
 }
 
 .sidenav {
-  .mat-card.drop-box {
-    mat-icon.now-playing {
-      color: $blue-500;
-      position: absolute;
-      top: 3px;
-      left: 3px;
+  padding-top: 10px;
+  form {
+    font-size: 40px;
+    mat-form-field {
+      width: 64px;
     }
+    .mat-form-field-infix {
+      border-top: 0 solid transparent;
+    }
+    .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+      padding-bottom: 0;
+    }
+    .mat-form-field-underline {
+      position: static;
+    }
+  }
+  .add-timer-option-button {
+    width: 81%;
+    height: 50px;
+    color: $mediumgray;
+    border-radius: 4px;
+    margin: 5px 30px;
   }
 }

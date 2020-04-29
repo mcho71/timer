@@ -2,7 +2,9 @@ import { Component, ViewChild, HostListener, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { TimerOption, Time } from './classes';
-import { TimerComponent } from './shared/timer/timer.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { TimePicker } from './shared/time-picker';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -18,16 +20,23 @@ export class AppComponent implements OnInit {
   private sideBySideWidth = 992;
   isTransitioning = false;
 
-  loop = true;
+  private repeatMode: 'repeat' | 'repeatOne' | 'noRepeat' = 'repeat';
+  get isRepeat() {
+    return this.repeatMode == 'repeat';
+  }
   timerOptions: TimerOption[] = [
-    new TimerOption(new Time(0, 0, 5)),
-    new TimerOption(new Time(0, 0, 8)),
-    new TimerOption(new Time(0, 0, 7)),
+    new TimerOption(new Time(0, 0, 1), 'One'),
+    new TimerOption(new Time(0, 0, 2), 'Two'),
+    new TimerOption(new Time(0, 0, 3)),
   ];
   currentTimerOptionIndex = 0;
   get currentTimerOption() {
     return this.timerOptions[this.currentTimerOptionIndex];
   }
+
+  newTimerOption = new TimerOption(new Time(0, 0, 0));
+
+  constructor(private _snackBar: MatSnackBar, private _timePicker: TimePicker) { }
 
   ngOnInit() {
     // Do not initialize the search on browsers that lack web worker support
@@ -58,8 +67,40 @@ export class AppComponent implements OnInit {
   onFinish() {
     if (this.currentTimerOptionIndex < this.timerOptions.length - 1) {
       this.currentTimerOptionIndex += 1;
-    } else if (this.loop) {
+    } else if (this.isRepeat) {
       this.currentTimerOptionIndex = 0;
     }
+  }
+
+  addTimerOption() {
+    this.timerOptions.push(new TimerOption(new Time(0, 0, 0)));
+    this._snackBar.open('New Timer Added.', null, {
+      duration: 2000
+    });
+  }
+
+  copyTimerOption(timerOption: TimerOption, index: number) {
+    this.timerOptions = [
+      ...this.timerOptions.slice(0, index),
+      timerOption.clone(),
+      ...this.timerOptions.slice(index)
+    ];
+  }
+
+  pickTime(timerOption: TimerOption) {
+    this._timePicker.setDate(this._timePicker.parseDate(`${timerOption.time.hour}:${timerOption.time.min}:${timerOption.time.sec}`));
+    this._timePicker.show();
+    this._timePicker.valueChanges().pipe(take(1))
+      .subscribe(time => timerOption.time = time);
+  }
+
+  deleteTimerOption(index: number) {
+    const option = this.timerOptions.splice(index, 1)[0];
+    const snackBarRef = this._snackBar.open(`Timer ${option.title} has deleted.`, 'Undo', {
+      duration: 3000
+    });
+    snackBarRef.onAction().subscribe(() => {
+      this.copyTimerOption(option, index);
+    });
   }
 }
