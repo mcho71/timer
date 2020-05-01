@@ -39,11 +39,6 @@ export class AppComponent implements OnInit {
   constructor(private _snackBar: MatSnackBar, private _timePicker: TimePicker) { }
 
   ngOnInit() {
-    // Do not initialize the search on browsers that lack web worker support
-    if ('Worker' in window) {
-      // Delay initialization by up to 2 seconds
-      console.log(window.Worker);
-    }
 
     this.onResize(window.innerWidth);
   }
