@@ -151,7 +151,10 @@ export class AppComponent implements OnInit {
   }
 
   private changeUrl() {
-    this.location.replaceState('', this.generateQuery());
+    this.location.replaceState(
+      this.location.path().split('?').shift() || '',
+      this.generateQuery()
+    );
   }
 
   private generateQuery() {
