@@ -25,6 +25,10 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
+              "src/favicon-16x16.png",
+              "src/favicon-32x32.png",
+              "src/favicon-64x64.png",
+              "src/ogp.png",
               "src/assets",
               "src/manifest.webmanifest"
             ],
