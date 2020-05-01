@@ -865,62 +865,50 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var _angular_service_worker__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
-    /*! @angular/service-worker */
-    "./node_modules/@angular/service-worker/__ivy_ngcc__/fesm2015/service-worker.js");
-    /* harmony import */
-
-
-    var _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+    var _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
     /*! @angular/cdk/drag-drop */
     "./node_modules/@angular/cdk/__ivy_ngcc__/fesm2015/drag-drop.js");
     /* harmony import */
 
 
-    var _environments_environment__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
-    /*! ../environments/environment */
-    "./src/environments/environment.ts");
-    /* harmony import */
-
-
-    var _app_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
+    var _app_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
     /*! ./app.component */
     "./src/app/app.component.ts");
     /* harmony import */
 
 
-    var _shared_custom_icon_registry__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
+    var _shared_custom_icon_registry__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
     /*! ./shared/custom-icon-registry */
     "./src/app/shared/custom-icon-registry.ts");
     /* harmony import */
 
 
-    var _shared_shared_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(
+    var _shared_shared_module__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
     /*! ./shared/shared.module */
     "./src/app/shared/shared.module.ts");
     /* harmony import */
 
 
-    var _angular_forms__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(
+    var _angular_forms__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
     /*! @angular/forms */
     "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
 
     var svgIconProviders = [{
-      provide: _shared_custom_icon_registry__WEBPACK_IMPORTED_MODULE_15__["SVG_ICONS"],
+      provide: _shared_custom_icon_registry__WEBPACK_IMPORTED_MODULE_13__["SVG_ICONS"],
       useValue: {
         name: 'close',
         svgSource: '<svg focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">' + '<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />' + '<path d="M0 0h24v24H0z" fill="none" />' + '</svg>'
       },
       multi: true
     }, {
-      provide: _shared_custom_icon_registry__WEBPACK_IMPORTED_MODULE_15__["SVG_ICONS"],
+      provide: _shared_custom_icon_registry__WEBPACK_IMPORTED_MODULE_13__["SVG_ICONS"],
       useValue: {
         name: 'insert_comment',
         svgSource: '<svg focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">' + '<path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z" />' + '<path d="M0 0h24v24H0z" fill="none" />' + '</svg>'
       },
       multi: true
     }, {
-      provide: _shared_custom_icon_registry__WEBPACK_IMPORTED_MODULE_15__["SVG_ICONS"],
+      provide: _shared_custom_icon_registry__WEBPACK_IMPORTED_MODULE_13__["SVG_ICONS"],
       useValue: {
         name: 'keyboard_arrow_right',
         svgSource: '<svg focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">' + '<path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z" />' + '</svg>'
@@ -928,7 +916,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       multi: true
     }, // Namespace: logos
     {
-      provide: _shared_custom_icon_registry__WEBPACK_IMPORTED_MODULE_15__["SVG_ICONS"],
+      provide: _shared_custom_icon_registry__WEBPACK_IMPORTED_MODULE_13__["SVG_ICONS"],
       useValue: {
         namespace: 'logos',
         name: 'github',
@@ -936,7 +924,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       },
       multi: true
     }, {
-      provide: _shared_custom_icon_registry__WEBPACK_IMPORTED_MODULE_15__["SVG_ICONS"],
+      provide: _shared_custom_icon_registry__WEBPACK_IMPORTED_MODULE_13__["SVG_ICONS"],
       useValue: {
         namespace: 'logos',
         name: 'twitter',
@@ -951,7 +939,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineNgModule"]({
       type: AppModule,
-      bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_14__["AppComponent"]]
+      bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_12__["AppComponent"]]
     });
     AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjector"]({
       factory: function AppModule_Factory(t) {
@@ -959,17 +947,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       },
       providers: [{
         provide: _angular_material_icon__WEBPACK_IMPORTED_MODULE_4__["MatIconRegistry"],
-        useClass: _shared_custom_icon_registry__WEBPACK_IMPORTED_MODULE_15__["CustomIconRegistry"]
+        useClass: _shared_custom_icon_registry__WEBPACK_IMPORTED_MODULE_13__["CustomIconRegistry"]
       }, svgIconProviders],
-      imports: [[_angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__["BrowserModule"], _angular_service_worker__WEBPACK_IMPORTED_MODULE_11__["ServiceWorkerModule"].register('ngsw-worker.js', {
-        enabled: _environments_environment__WEBPACK_IMPORTED_MODULE_13__["environment"].production
-      }), _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["BrowserAnimationsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_17__["FormsModule"], _shared_shared_module__WEBPACK_IMPORTED_MODULE_16__["SharedModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"], _angular_material_card__WEBPACK_IMPORTED_MODULE_3__["MatCardModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_4__["MatIconModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"], _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_6__["MatSidenavModule"], _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_7__["MatSnackBarModule"], _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__["MatToolbarModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClientModule"], _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_12__["DragDropModule"]]]
+      imports: [[_angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__["BrowserModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["BrowserAnimationsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_15__["FormsModule"], _shared_shared_module__WEBPACK_IMPORTED_MODULE_14__["SharedModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"], _angular_material_card__WEBPACK_IMPORTED_MODULE_3__["MatCardModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_4__["MatIconModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"], _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_6__["MatSidenavModule"], _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_7__["MatSnackBarModule"], _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__["MatToolbarModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClientModule"], _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_11__["DragDropModule"]]]
     });
 
     (function () {
       (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsetNgModuleScope"](AppModule, {
-        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_14__["AppComponent"]],
-        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__["BrowserModule"], _angular_service_worker__WEBPACK_IMPORTED_MODULE_11__["ServiceWorkerModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["BrowserAnimationsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_17__["FormsModule"], _shared_shared_module__WEBPACK_IMPORTED_MODULE_16__["SharedModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"], _angular_material_card__WEBPACK_IMPORTED_MODULE_3__["MatCardModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_4__["MatIconModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"], _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_6__["MatSidenavModule"], _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_7__["MatSnackBarModule"], _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__["MatToolbarModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClientModule"], _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_12__["DragDropModule"]]
+        declarations: [_app_component__WEBPACK_IMPORTED_MODULE_12__["AppComponent"]],
+        imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__["BrowserModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["BrowserAnimationsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_15__["FormsModule"], _shared_shared_module__WEBPACK_IMPORTED_MODULE_14__["SharedModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"], _angular_material_card__WEBPACK_IMPORTED_MODULE_3__["MatCardModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_4__["MatIconModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"], _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_6__["MatSidenavModule"], _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_7__["MatSnackBarModule"], _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__["MatToolbarModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClientModule"], _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_11__["DragDropModule"]]
       });
     })();
     /*@__PURE__*/
@@ -979,15 +965,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](AppModule, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"],
         args: [{
-          declarations: [_app_component__WEBPACK_IMPORTED_MODULE_14__["AppComponent"]],
-          imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__["BrowserModule"], _angular_service_worker__WEBPACK_IMPORTED_MODULE_11__["ServiceWorkerModule"].register('ngsw-worker.js', {
-            enabled: _environments_environment__WEBPACK_IMPORTED_MODULE_13__["environment"].production
-          }), _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["BrowserAnimationsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_17__["FormsModule"], _shared_shared_module__WEBPACK_IMPORTED_MODULE_16__["SharedModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"], _angular_material_card__WEBPACK_IMPORTED_MODULE_3__["MatCardModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_4__["MatIconModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"], _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_6__["MatSidenavModule"], _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_7__["MatSnackBarModule"], _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__["MatToolbarModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClientModule"], _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_12__["DragDropModule"]],
+          declarations: [_app_component__WEBPACK_IMPORTED_MODULE_12__["AppComponent"]],
+          imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__["BrowserModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["BrowserAnimationsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_15__["FormsModule"], _shared_shared_module__WEBPACK_IMPORTED_MODULE_14__["SharedModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"], _angular_material_card__WEBPACK_IMPORTED_MODULE_3__["MatCardModule"], _angular_material_icon__WEBPACK_IMPORTED_MODULE_4__["MatIconModule"], _angular_material_input__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"], _angular_material_sidenav__WEBPACK_IMPORTED_MODULE_6__["MatSidenavModule"], _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_7__["MatSnackBarModule"], _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_8__["MatToolbarModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClientModule"], _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_11__["DragDropModule"]],
           providers: [{
             provide: _angular_material_icon__WEBPACK_IMPORTED_MODULE_4__["MatIconRegistry"],
-            useClass: _shared_custom_icon_registry__WEBPACK_IMPORTED_MODULE_15__["CustomIconRegistry"]
+            useClass: _shared_custom_icon_registry__WEBPACK_IMPORTED_MODULE_13__["CustomIconRegistry"]
           }, svgIconProviders],
-          bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_14__["AppComponent"]]
+          bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_12__["AppComponent"]]
         }]
       }], null, null);
     })();
