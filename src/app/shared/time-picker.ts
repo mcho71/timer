@@ -17,7 +17,10 @@ export class TimePicker extends Picker {
       format: 'HH:mm:ss',
       controls: true,
       inline: true,
-      headers: true
+      headers: true,
+      text: {
+        title: 'Pick a time'
+      }
     });
     const emitValue = () => {
       const splitValue = (this.getDate(true) as string).split(':').map(str => Number.parseInt(str));
