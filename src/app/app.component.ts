@@ -150,7 +150,7 @@ export class AppComponent implements OnInit {
     this.changeUrl();
   }
 
-  private changeUrl() {
+  changeUrl() {
     this.location.replaceState(
       this.location.path().split('?').shift() || '',
       this.generateQuery()
