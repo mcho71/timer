@@ -6,13 +6,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { TimePicker } from './shared/time-picker';
 import { take } from 'rxjs/operators';
 import { NotificationService } from './shared/notification.service';
+import { Location } from '@angular/common';
+
+const parameters = new URLSearchParams(window.location.search);
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-  title = 'timer';
+  name = 'Timer';
   mode: 'over' | 'side' = 'side';
   isOpened = true;
   isSideBySide = true;
@@ -37,10 +40,41 @@ export class AppComponent implements OnInit {
 
   newTimerOption = new TimerOption(new Time(0, 0, 0));
 
-  constructor(private _snackBar: MatSnackBar, private _timePicker: TimePicker, private _notificationService: NotificationService) { }
+  constructor(
+    private _snackBar: MatSnackBar,
+    private _timePicker: TimePicker,
+    private _notificationService: NotificationService,
+    private location: Location) { }
 
   ngOnInit() {
     this.onResize(window.innerWidth);
+    const name = parameters.get('name');
+    if (name) {
+      this.name = name;
+      document.title = `${name} - Timer`;
+    }
+    this.getTimerOptionFromGetQuery();
+    this.changeUrl();
+  }
+
+  private getTimerOptionFromGetQuery() {
+    const timerOptions = [];
+    while (true) {
+      const time = parameters.get(`time${timerOptions.length}`);
+      if (!time) {
+        break;
+      }
+      const splitValue = time.split(':').map(str => Number.parseInt(str));
+      timerOptions.push(
+        new TimerOption(
+          new Time(splitValue[0], splitValue[1], splitValue[2]),
+          parameters.get(`title${timerOptions.length}`)
+        )
+      );
+    }
+    if (timerOptions.length > 0) {
+      this.timerOptions = timerOptions;
+    }
   }
 
   @HostListener('window:resize', ['$event.target.innerWidth'])
@@ -57,6 +91,7 @@ export class AppComponent implements OnInit {
       this.currentTimerOptionIndex = event.currentIndex;
     }
     moveItemInArray(this.timerOptions, event.previousIndex, event.currentIndex);
+    this.changeUrl();
   }
 
   onFinish() {
@@ -77,6 +112,7 @@ export class AppComponent implements OnInit {
     this._snackBar.open('New Timer Added.', null, {
       duration: 2000
     });
+    this.changeUrl();
   }
 
   copyTimerOption(timerOption: TimerOption, index: number) {
@@ -85,13 +121,17 @@ export class AppComponent implements OnInit {
       timerOption.clone(),
       ...this.timerOptions.slice(index)
     ];
+    this.changeUrl();
   }
 
   pickTime(timerOption: TimerOption) {
     this._timePicker.setDate(this._timePicker.parseDate(`${timerOption.time.hour}:${timerOption.time.min}:${timerOption.time.sec}`));
     this._timePicker.show();
     this._timePicker.valueChanges().pipe(take(1))
-      .subscribe(time => timerOption.time = time);
+      .subscribe(time => {
+        timerOption.time = time;
+        this.changeUrl();
+      });
   }
 
   deleteTimerOption(index: number) {
@@ -102,5 +142,21 @@ export class AppComponent implements OnInit {
     snackBarRef.onAction().subscribe(() => {
       this.copyTimerOption(option, index);
     });
+    this.changeUrl();
+  }
+
+  private changeUrl() {
+    this.location.replaceState('', this.generateQuery());
+  }
+
+  private generateQuery() {
+    let query = `name=${this.name}`;
+    for (let i = 0; i < this.timerOptions.length; i++) {
+      query += `&time${i}=${this.timerOptions[i].time.format()}`;
+      if (this.timerOptions[i].title) {
+        query += `&title${i}=${this.timerOptions[i].title}`;
+      }
+    }
+    return query;
   }
 }
