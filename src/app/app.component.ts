@@ -60,14 +60,14 @@ export class AppComponent implements OnInit {
   }
 
   onFinish() {
-    const finised = this.currentTimerOption;
+    const finished = this.currentTimerOption;
     if (this.currentTimerOptionIndex < this.timerOptions.length - 1) {
       this.currentTimerOptionIndex += 1;
     } else if (this.isRepeat) {
       this.currentTimerOptionIndex = 0;
     }
     this._notificationService.spawnNotification(
-      `${finised.title} Finished!`,
+      `${finished.title} Finished!`,
       `Next: ${this.currentTimerOption.title} (${this.currentTimerOption.time.format()})`
     );
   }
