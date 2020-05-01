@@ -29,9 +29,14 @@ export class AppComponent implements OnInit {
     return this.repeatMode == 'repeat';
   }
   timerOptions: TimerOption[] = [
-    new TimerOption(new Time(0, 0, 1), 'One'),
-    new TimerOption(new Time(0, 0, 2), 'Two'),
-    new TimerOption(new Time(0, 0, 3)),
+    new TimerOption(new Time(0, 30, 0), 'Focus'),
+    new TimerOption(new Time(0, 5, 0), 'Rest'),
+    new TimerOption(new Time(0, 30, 0), 'Focus'),
+    new TimerOption(new Time(0, 5, 0), 'Rest'),
+    new TimerOption(new Time(0, 30, 0), 'Focus'),
+    new TimerOption(new Time(0, 5, 0), 'Rest'),
+    new TimerOption(new Time(0, 30, 0), 'Focus'),
+    new TimerOption(new Time(0, 15, 0), 'Long rest'),
   ];
   currentTimerOptionIndex = 0;
   get currentTimerOption() {
