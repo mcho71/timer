@@ -5,6 +5,7 @@ import { TimerOption, Time } from './classes';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TimePicker } from './shared/time-picker';
 import { take } from 'rxjs/operators';
+import { NotificationService } from './shared/notification.service';
 
 @Component({
   selector: 'app-root',
@@ -36,10 +37,9 @@ export class AppComponent implements OnInit {
 
   newTimerOption = new TimerOption(new Time(0, 0, 0));
 
-  constructor(private _snackBar: MatSnackBar, private _timePicker: TimePicker) { }
+  constructor(private _snackBar: MatSnackBar, private _timePicker: TimePicker, private _notificationService: NotificationService) { }
 
   ngOnInit() {
-
     this.onResize(window.innerWidth);
   }
 
@@ -60,11 +60,16 @@ export class AppComponent implements OnInit {
   }
 
   onFinish() {
+    const finised = this.currentTimerOption;
     if (this.currentTimerOptionIndex < this.timerOptions.length - 1) {
       this.currentTimerOptionIndex += 1;
     } else if (this.isRepeat) {
       this.currentTimerOptionIndex = 0;
     }
+    this._notificationService.spawnNotification(
+      `${finised.title} Completed!`,
+      `Next: ${this.currentTimerOption.title} (${this.currentTimerOption.time.format()})`
+    );
   }
 
   addTimerOption() {

@@ -7,6 +7,8 @@ export class TimerOption {
   }
 };
 
+const formatNumberDoubleDigit = (number: number) => `00${number}`.slice(-2);
+
 export class Time {
   constructor(public hour: number, public min: number, public sec: number) { }
   toMillisecond() {
@@ -15,4 +17,5 @@ export class Time {
   clone() {
     return new Time(this.hour, this.min, this.sec);
   }
+  format = () => `${formatNumberDoubleDigit(this.hour)}:${formatNumberDoubleDigit(this.min)}:${formatNumberDoubleDigit(this.sec)}`;
 }
