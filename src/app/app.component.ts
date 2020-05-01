@@ -67,7 +67,7 @@ export class AppComponent implements OnInit {
       this.currentTimerOptionIndex = 0;
     }
     this._notificationService.spawnNotification(
-      `${finised.title} Completed!`,
+      `${finised.title} Finished!`,
       `Next: ${this.currentTimerOption.title} (${this.currentTimerOption.time.format()})`
     );
   }
